@@ -1,0 +1,18 @@
+﻿@model ElectronicJournnal.Models.PupilWithClass
+
+<div id="information" style="float:left; padding-left: 400px; padding-top: 50px;">
+    @using (Html.BeginForm("ViewPupils", "Teacher", FormMethod.Post))
+    {
+        foreach (ElectronicJournnal.Models.PupilWithClass item in Model)
+        {
+            <p>
+                @item.Surname @item.Name @item.Patronymic @item.Class
+                <button name="action" value="@item.Pupil_ID" style="display: inline-block;">Просмотреть информацию</button>
+                <button name="delete" value="@item.Pupil_ID" style="display: inline-block;">Удалить ученика</button>
+            </p>
+        }
+    }
+</div>
+
+
+

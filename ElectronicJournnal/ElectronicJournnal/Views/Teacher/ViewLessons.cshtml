@@ -1,0 +1,99 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+</head>
+<body>
+    <div style="margin-top: 5%;">
+        <div>
+            <div style="float: right; margin-right: 50px; margin-top: 150px; font-family: Calibri,
+                        sans-serif; font-size: 23px; border: 2px solid #154504; padding: 15px; border-radius: 20px; background-color: rgba(71, 182, 36, 0.1)">
+                <p style="margin-left: 50px;"><b>Фильтрация</b></p>
+                <p style="margin-left: 57px;">Дата урока:</p>
+                <p style="margin-left: 20px; margin-right: 20px;">от <input type="date" id="fromDate" class="inpDate"></p>
+                <p style="margin-left: 20px; margin-right: 20px;">до <input type="date" id="toDate" class="inpDate"></p>
+                <p style="margin-left: 80px;">Класс:</p>
+                <p>
+                    <select name="Class_ID" id="class" class="imputSelectMin" style="margin-left: 75px;">
+                        <option value=0></option>
+                        @foreach (ElectronicJournnal.Models.Class item in ViewBag.Classes)
+                        {
+                            <option value="@item.Class_ID">@item.Class_Name</option>
+                        }
+                    </select>
+                </p>
+                <div style="display: inline-block;"><button id="filter" class="img" style="margin-left: 50px;"><img src="~/Images/filter.png" width="50" height="50" /></button></div>
+                <div style="display: inline-block;">
+                    @using (Html.BeginForm("ToAllLessons", "Teacher", FormMethod.Post))
+                    {
+                        <button style="display: inline-block;" class="img"><img src="~/Images/nofilter.png" width="50" height="50" /></button>
+                    }
+                </div>
+            </div>
+
+            <div id="information" style="float:left; padding-left: 330px; padding-top: 50px;">
+                <div style="padding-left: 750px;">
+                    <a href="/Teacher/AddLessonForm">
+                        <img src="~/Images/add.png" alt="Добавить урок" />
+                    </a>
+                </div>
+                @using (Html.BeginForm("ViewLessons", "Teacher", FormMethod.Post))
+                {
+                    <table class="bordered">
+                        <thead>
+                            <tr>
+                                <th>Дата</th>
+                                <th>Уроки</th>
+                            </tr>
+                        </thead>
+                            <tbody>
+                                @for (int i = 0; i < ViewBag.Dates.Count; i++)
+                                {
+                                    <tr>
+                                        <td style="padding-right: 20px;">
+                                            @ViewBag.Dates[i].ToLongDateString()
+                                        </td>
+                                        <td>
+                                            @foreach (ElectronicJournnal.Models.LessonFullInf lesson in ViewBag.Lessons[i])
+                                            {
+                                                <p>
+                                                    @lesson.Class_Name @lesson.Subject_Name
+                                                    @lesson.Teacher_Surname @lesson.Teacher_Name[0].@lesson.Teacher_Patronymic[0].
+                                                    <button name="action" value="@lesson.Lesson_ID" class="img" style="display: inline-block;"><img src="~/Images/edit.png" width="30" height="30" /></button>
+                                                    <button name="delete" value="@lesson.Lesson_ID" class="img" style="display: inline-block;"><img src="~/Images/delete.png" width="30" height="30" /></button>
+                                                    <button name="addMark" value="@lesson.Lesson_ID" class="img" style="display: inline-block;"><img src="~/Images/addmark.png" width="30" height="30" /></button>
+                                                    <button name="absent" value="@lesson.Lesson_ID" class="img" style="display: inline-block;"><img src="~/Images/absent.png" width="30" height="30" /></button>
+                                                </p>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $('#filter').click(function () {
+        var classID = $("#class").val();
+        var from = $("#fromDate").val();
+        var to = $("#toDate").val();
+        $.ajax({
+            type: 'GET',
+                url: '@Url.Action("FilterLessons")?Class_ID=' + classID + '&from=' + from + '&to=' + to,
+                success: function (data) {
+                    $('#information').replaceWith(data);
+                }
+            });
+        });
+</script>

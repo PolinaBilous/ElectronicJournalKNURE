@@ -1,0 +1,9 @@
+﻿@model ElectronicJournnal.Models.MarkAbsentFullInf
+
+<div>
+    <p>Ученик: @Model.Pupil_Surname @Model.Pupil_Name @Model.Pupil_Patonymic</p>
+    <p>Учитель: @Model.Teacher_Surname @Model.Teacher_Name @Model.Teacher_Patonymic</p>
+    <p>Предмет: @Model.Subject_Name</p>
+    <p>Дата: @Model.Date.ToLongDateString()</p>
+    <p>Оценка: отсутствовал</p>
+</div>

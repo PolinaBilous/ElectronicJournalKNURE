@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_LayoutStart.cshtml";
+}
+
+<div id="menu">
+    <a href="#inf" class="pointer">▼ Узнать больше ▼</a>
+</div>
+
+<div id="teach">
+    <a href="#teacher" class="T">Я - учитель</a>
+</div>
+<div id="par">
+    <a href="#parent" class="P">Я - родитель</a>
+</div>
+
+<img src="~/Images/home.jpg" class="background" />
+
+<div id="inf">
+    <p>Если вы учитель, то нажмите на кнопку я учитель и вы сможете просматривать всю информацию и упралять ею.</p>
+    <p>
+        Если вы родитель, то нажмите на кнопку я родитель и вы просматривать доступную на сайте информацию, а также подписаться на рассылку (при желании).
+    </p>
+</div>
+
+
+<div id="teacher">
+    <p class="title">Для учителей</p>
+    <table class="ForTeacher">
+        <tr>
+            <td><img src="~/Images/teacher.jpg" class="teacher" /></td>
+            <td class="Pas">
+                Введите пароль:
+                <form action="/Home/Index" method="post">
+                    <input type="password" name='password' placeholder="Password" required>
+                    <p><input type="submit" class="submit" /></p>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="parent">
+    <p class="title">Для родителей</p>
+    <table class="ForTeacher">
+        <tr>
+            <td class="Choise">
+                @using (Html.BeginForm("Dispatch", "Home", FormMethod.Post))
+                {
+                    <span>Хотели бы вы получать рассылку об успеваемости своих детей?</span>
+                    <p>
+                        <input type="submit" class="submit" name ="res" value="Да" style="margin-right: 5%; margin-left: 10%;"/> 
+                        <input type="submit" class="submit" name ="res" value="Нет" />
+                    </p>
+                }
+            </td>
+            <td> <img src="~/Images/parent.jpg" class="parent" /></td>
+        </tr>
+    </table>
+</div>

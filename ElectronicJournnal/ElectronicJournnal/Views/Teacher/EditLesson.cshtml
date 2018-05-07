@@ -1,0 +1,66 @@
+﻿@model ElectronicJournnal.Models.LessonFullInf
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top: 10%; margin-left: 30%; font-family: Calibri, sans-serif; font-size: 23px;">
+    @using (Html.BeginForm("SaveLessonInformation", "Teacher", FormMethod.Post, new { @class = "addForm" }))
+    {
+        <h2 style="font-size: 30px; margin-top: 15px; margin-left: 43px;">Редактирование информации</h2>
+        @Html.HiddenFor(l => l.Lesson_ID, Model.Lesson_ID)
+        <p>
+            Класс:
+            <select name="Class_ID" class="imputSelect">
+                @foreach (ElectronicJournnal.Models.Class item in ViewBag.Classes)
+                {
+                    if (item.Class_ID == Model.Class_ID)
+                    {
+                        <option selected value="@item.Class_ID">@item.Class_Name</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Class_ID">@item.Class_Name</option>
+                    }
+                }
+            </select>
+        </p>
+        <p>
+            Учитель:
+            <select name="Teacher_ID" class="inputSelectLong">
+                @foreach (ElectronicJournnal.Models.TeacherShortInf item in ViewBag.Teachers)
+                {
+                    if (item.Teacher_ID == Model.Teacher_ID)
+                    {
+                        <option selected value="@item.Teacher_ID">@item.Surname @item.Name @item.Patronymic</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Teacher_ID">@item.Surname @item.Name @item.Patronymic</option>
+                    }
+                }
+            </select>
+        </p>
+        <p>
+            Предмет:
+            <select name="Subject_ID" class="imputSelect" style="width: 200px;">
+                @foreach (ElectronicJournnal.Models.Subject item in ViewBag.Subjects)
+                {
+                    if (item.Subject_ID == Model.Subject_ID)
+                    {
+                        <option selected value="@item.Subject_ID">@item.Subject_Name</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Subject_ID">@item.Subject_Name</option>
+                    }
+                }
+            </select>
+        </p>
+        <p>Дата урока: <input type="date" name="Date" value=@Model.Date.ToString("yyyy-MM-dd") class="inpDate"></p>
+
+
+        <button name="action" value="@Model.Lesson_ID"class="img" style="margin-left: 175px;"><img src="~/Images/save.png" width="60" height="60" /></button>
+        <button name="cancel" value="cancel"class="img"><img src="~/Images/exit.png" width="65" height="65" /></button>
+    }
+</div>

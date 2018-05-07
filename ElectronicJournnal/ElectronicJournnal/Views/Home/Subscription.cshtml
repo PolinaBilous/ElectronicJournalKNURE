@@ -1,0 +1,26 @@
+﻿@model ElectronicJournnal.Models.Parent
+
+@{
+    ViewBag.Title = "Subscription";
+    Layout = "~/Views/Shared/_LayoutParent.cshtml";
+}
+
+<div style="margin-top: 6%; margin-left: 22%; font-family: Calibri, sans-serif; font-size: 23px; ">
+    @using (Html.BeginForm("Subscription", "Home", FormMethod.Post, new { @class = "addForm2" }))
+    {
+        <h4 class="header">Заполните информацию:</h4>
+        <p>Имя: @Html.TextBoxFor(p => p.Name, new { @class = "inp" })</p>
+        <p>Фамилия: @Html.TextBoxFor(p => p.Surname, new { @class = "inp" })</p>
+        <p>Отчество: @Html.TextBoxFor(p => p.Patronymic, new { @class = "inp" })</p>
+        <p>Электронная почта: @Html.TextBoxFor(p => p.Email, new { @class = "inp" })</p>
+
+        <p><b>Выберите учеников за успеваемостью который Вы хотели бы следить:</b></p>
+        foreach (ElectronicJournnal.Models.PupilWithClass p in ViewBag.Pupils)
+        {
+            <p><label><input type="checkbox" name="Subscribe" value=@p.Pupil_ID style="width: 20px; height:20px;"></label>@p.Surname @p.Name @p.Patronymic @p.Class</p>
+        }
+
+        <button name="subscr" value="submit" class="img"><img src="~/Images/save.png" style="width: 60px; height: 60px; margin-left: 350px;" /></button>
+    }
+</div>
+

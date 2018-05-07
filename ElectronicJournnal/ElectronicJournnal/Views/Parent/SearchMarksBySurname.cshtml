@@ -1,0 +1,100 @@
+﻿<div id="information" style="float:left; padding-left: 350px; padding-top: 50px;">
+    <table class="bordered">
+        <thead>
+            <tr>
+                <th>Ученик</th>
+                <th>Оценки</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Pupils.Count == 0)
+            {
+                @: На данный момент в классе нет учеников, которые получили оценки.
+            }
+
+            @for (int i = 0; i < ViewBag.Pupils.Count; i++)
+            {
+                if (ViewBag.Pupil.Pupil_ID != ViewBag.Pupils[i].Pupil_ID)
+                {
+                    <tr>
+                        <td style="padding-right: 20px;">
+                            @ViewBag.Pupils[i].Surname @ViewBag.Pupils[i].Name @ViewBag.Pupils[i].Patronymic
+                        </td>
+                        <td>
+                            @if (ViewBag.Subjects[i].Count == 0)
+                            {
+                                @: Нет оценок
+                             }
+                            else
+                            {
+                                for (int j = 0; j < ViewBag.Subjects[i].Count; j++)
+                                {
+                                    <span>
+                                        @ViewBag.Subjects[i][j].Subject_Name :
+                                        @foreach (ElectronicJournnal.Models.Mark m in ViewBag.Marks[i][j])
+                                        {
+                                            if (m.PupilMark != null)
+                                            {
+                                                <span>
+                                                    @Html.ActionLink(@m.PupilMark.ToString(), "ViewMarkInfo", "Parent", new { markID = m.Mark_ID },
+                                                         new { @class = "viewDialog", data_dialog_title = "Информация про оценку" })
+                                                </span>
+                                            }
+                                            else if (m.PupilMark == null)
+                                            {
+                                                <span>
+                                                    @Html.ActionLink("н", "ViewMarkAbsentInfo", "Parent", new { markID = m.Mark_ID },
+                                                         new { @class = "viewDialog", data_dialog_title = "Информация про оценку" })
+                                                </span>
+                                            }
+                                        }
+                                    </span> <br>    
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr style="background-color: rgba(55, 58, 170, 0.26)">
+                        <td style="padding-right: 20px;">
+                            @ViewBag.Pupils[i].Surname @ViewBag.Pupils[i].Name @ViewBag.Pupils[i].Patronymic
+                        </td>
+                        <td>
+                            @if (ViewBag.Subjects[i].Count == 0)
+                            {
+                                @: Нет оценок
+                             }
+                            else
+                            {
+                                for (int j = 0; j < ViewBag.Subjects[i].Count; j++)
+                                {
+                                    <span>
+                                        @ViewBag.Subjects[i][j].Subject_Name :
+                                        @foreach (ElectronicJournnal.Models.Mark m in ViewBag.Marks[i][j])
+                                        {
+                                            if (m.PupilMark != null)
+                                            {
+                                                <span>
+                                                    @Html.ActionLink(@m.PupilMark.ToString(), "ViewMarkInfo", "Parent", new { markID = m.Mark_ID },
+                                                         new { @class = "viewDialog", data_dialog_title = "Информация про оценку" })
+                                                </span>
+                                            }
+                                            else if (m.PupilMark == null)
+                                            {
+                                                <span>
+                                                    @Html.ActionLink("н", "ViewMarkAbsentInfo", "Parent", new { markID = m.Mark_ID },
+                                                         new { @class = "viewDialog", data_dialog_title = "Информация про оценку" })
+                                                </span>
+                                            }
+                                        }
+                                    </span> <br>
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

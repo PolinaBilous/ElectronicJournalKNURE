@@ -1,0 +1,24 @@
+﻿@model ElectronicJournnal.Models.TeacherFullInformation
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top: 5%; margin-left: 33%; font-family: Calibri, sans-serif; font-size: 23px; ">
+    @using (Html.BeginForm("SaveTeacherFullInformation", "Teacher", FormMethod.Post, new { @class = "addForm" }))
+    {
+        <h2 style="font-size: 30px; margin-top: 15px; margin-left: 60px;">Редактирование информации</h2>
+        @Html.HiddenFor(t => t.Teacher_ID)
+        <p>Имя: @Html.TextBoxFor(t => t.Name, Model.Name, new { @class = "inp" })</p>
+        <p>Фамилия: @Html.TextBoxFor(t => t.Surname, Model.Surname, new { @class = "inp" })</p>
+        <p>Отчество: @Html.TextBoxFor(t => t.Patronymic, Model.Patronymic, new { @class = "inp" })</p>
+        <p>Дата рождения: <input type="date" name="Date_Of_Birth" value=@Model.Date_Of_Birth.ToString("yyyy-MM-dd") class="inpDate"></p>
+        <p>Стаж работы: @Html.TextBoxFor(t => t.Experience, Model.Experience.ToString(), new { @class = "inp" })</p>
+        <p>Адресс: @Html.TextBoxFor(t => t.Address, Model.Address, new { @class = "inpLong"})</p>
+        <p>Телефон: @Html.TextBoxFor(t => t.Phone_Number, Model.Phone_Number, new { @class = "inpLong" })</p>
+        <p>Электронная почта: @Html.TextBoxFor(t => t.Email, Model.Email, new { @class = "inpLong" })</p>
+
+        <button name="action" value="@Model.Teacher_ID" class="img" style="margin-left: 175px;"><img src="~/Images/save.png" width="60" height="60" /></button>
+        <button name="cancel" value="cancel" class="img"><img src="~/Images/exit.png" width="65" height="65" /></button>
+    }
+</div>

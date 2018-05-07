@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutParent.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ClassRating</title>
+</head>
+<body>
+    <div style="margin-left: 40%; margin-top: 10%; font-family: Calibri, sans-serif; font-size: 25px;">
+        Класс:
+        <div style="display:inline-block; margin-top: 5px;">
+            <select name="Class_ID" id="class" class="imputSelect" style="margin-right: 2px; display: inline-block;">
+                @foreach (ElectronicJournnal.Models.Class item in ViewBag.Classes)
+                {
+                    <option value="@item.Class_ID">@item.Class_Name</option>
+                }
+            </select>
+        </div>
+        <button id="get" class="img" style=" position: relative; float: right; margin-right: 685px;"><img src="~/Images/rating.png" width="40" height="40" /></button>
+    </div>
+
+    <div id="information"></div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $('#get').click(function () {
+        var id = $("#class").val();
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("GetRating")?id=' + id,
+                success: function (data) {
+                    $('#information').replaceWith(data);
+                }
+            });
+        });
+</script>
+

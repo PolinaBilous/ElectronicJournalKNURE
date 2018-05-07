@@ -1,0 +1,80 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutParent.cshtml";
+}
+<html>
+<head>
+    <title></title>
+    <link href='@Url.Content("~/Content/themes/base/jquery-ui.css")' rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div style="margin-top: 10%;">
+        <h3 class="header"><b>Ученик:</b> @ViewBag.Pupil.Surname @ViewBag.Pupil.Name @ViewBag.Pupil.Patronymic</h3>
+        <h3 class="header">Оценки:</h3>
+        @if (ViewBag.Marks.Count != 0)
+            {
+            <table style="font-family: Calibri, sans-serif; font-size: 23px; margin-left: 45%;">
+                @for (int i = 0; i < ViewBag.Subjects.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            <span>
+                                @ViewBag.Subjects[i].Subject_Name :
+                                @foreach (ElectronicJournnal.Models.Mark m in ViewBag.Marks[i])
+                                {
+                                    if (m.PupilMark != null)
+                                    {
+                                        <span>
+                                            @Html.ActionLink(@m.PupilMark.ToString(), "ViewMarkInfo", "Parent", new { markID = m.Mark_ID },
+                                              new { @class = "viewDialog", data_dialog_title = "Информация про оценку" })
+                                        </span>
+                                    }
+                                    else if (m.PupilMark == null)
+                                    {
+                                        <span>
+                                            @Html.ActionLink("н", "ViewMarkAbsentInfo", "Parent", new { markID = m.Mark_ID },
+                                              new { @class = "viewDialog", data_dialog_title = "Информация про оценку" })
+                                        </span>
+                                    }
+                                }
+                            </span>
+                            <br>
+                        </td>
+                    </tr>
+                }
+            </table>
+            using (Html.BeginForm("GetPupilMarksReport", "Teacher", FormMethod.Post))
+            {
+                @Html.Hidden("pupilID", ViewData["CurrentPupil"])
+                <button name="action" value=1 class="img" style="display: inline; margin-left: 48%; margin-top: 3%;"><img src="~/Images/word.png" width="60" height="60" /></button>
+            }
+        }
+        else
+        {
+            @: У этого ученика нет оценкок.
+            }
+    </div>
+    <script src='@Url.Content("~/Scripts/jquery-1.12.4.min.js")' type="text/javascript"></script>
+    <script src='@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")' type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+
+            $.ajaxSetup({ cache: false });
+
+            $(".viewDialog").on("click", function (e) {
+                e.preventDefault();
+
+                $("<div></div>")
+                    .addClass("dialog")
+                    .appendTo("body")
+                    .dialog({
+                        title: $(this).attr("data-dialog-title"),
+                        close: function () { $(this).remove() },
+                        modal: true
+                    })
+                    .load(this.href);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top: 11%; margin-left: 20%;">
+    @using (Html.BeginForm("GetStatistics", "Teacher", FormMethod.Post))
+    {
+        <div style="padding-bottom: 25px;"><p>@Html.ActionLink("Рейтинг учеников в классе", "ClassRating", "Teacher", new {@class="itemSt"})</p></div>
+        <div style="padding-bottom: 25px;"><p>@Html.ActionLink("Рейтинг классов в школе", "RatingOfClasses", "Teacher", new { @class = "itemSt" })</p></div>
+        <div style="padding-bottom: 25px;"><p>@Html.ActionLink("Наполняемость классов в школе", "GetClassesFillability", "Teacher", new { @class = "itemSt" })</p></div>
+        <div style="padding-bottom: 25px;"><p>@Html.ActionLink("Посещаемость предметов в школе", "LessonAttendence", "Teacher", new { @class = "itemSt" }) </p></div>
+        <div style="padding-bottom: 25px;"><p>@Html.ActionLink("Статистика об успеваемости школы", "SchoolMarksStatistic", "Teacher", new { @class = "itemSt" })</p></div>
+    }
+</div>

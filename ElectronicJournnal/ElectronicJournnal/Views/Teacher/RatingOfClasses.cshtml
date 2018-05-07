@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ElectronicJournnal.Models.ClassForRating>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div style="margin-top: 6%;">
+    <h3 class="header"> Рейтинг классов в школе: </h3>
+
+    <h3 class="header">Статистика: </h3>
+
+    <table class="bordered" style="width: 600px; margin-left: 30%;">
+        <thead>
+            <tr>
+                <th>Класс</th>
+                <th>Средний балл</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ElectronicJournnal.Models.ClassForRating c in Model)
+            {
+                <tr>
+                    <td>@c.ClassName </td>
+                    <td>@c.AvgMark.ToString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3 class="header">Диаграмма:</h3>
+</div>
+
+<div id="chart_div" style="align-content: center; width: 100%; margin-left: 19%;"></div>
+
+
+<script type="text/javascript" src="https://www.google.com/jsapi">
+</script>
+
+<script type="text/javascript">
+      // Подгружаем API
+      google.load('visualization', '1.0', { 'packages': ['corechart'] });
+
+      // Устанавливаем callback
+      google.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+          var options = {
+              'title': 'Рейтинг классов',
+              'width': 900,
+              'height': 500,
+              'is3D': true
+          };
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Class');
+          data.addColumn('number', 'Средний балл');
+
+          $.getJSON('@Url.Action("GetRatingOfClasses", "Teacher")', null,
+                                                   function (result) {
+                                                       if (result.Results.length) {
+                                                           $.each(result.Results, function (index, c) {
+                      data.addRow(
+                          [c.ClassName, c.AvgMark]
+                      );
+                  });
+                  // Отрисовка диаграммы
+                   var chart = new google.visualization.ColumnChart(
+                                   document.getElementById('chart_div'));
+                  chart.draw(data, options);
+              };
+          });
+      }
+</script>
+

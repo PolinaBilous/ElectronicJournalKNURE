@@ -1,0 +1,24 @@
+﻿@model ElectronicJournnal.Models.TeacherFullInformation
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top: 6%; margin-left: 30%; font-family: Calibri, sans-serif; font-size: 23px;">
+    <div class="addForm">
+        <p><b>Имя:</b> @Model.Name</p>
+        <p><b>Фамилия:</b> @Model.Surname</p>
+        <p><b>Отчество:</b> @Model.Patronymic</p>
+        <p><b>Дата рождения:</b> @Model.Date_Of_Birth.Date.ToLongDateString()</p>
+        <p><b>Возраст:</b> @Model.Age лет</p>
+        <p><b>Стаж работы:</b> @Model.Experience лет</p>
+        <p><b>Номер телефона:</b> @Model.Phone_Number</p>
+        <p><b>Адресс:</b> @Model.Address</p>
+        <p><b>Электронная почта:</b> @Model.Email</p>
+
+        @using (Html.BeginForm("EditTeacherInformation", "Teacher", FormMethod.Post))
+        {
+            <button name="action" value="@Model.Teacher_ID" class="img" style="margin-left: 200px;"><img src="~/Images/edit.png" width="60" height="60" /></button>
+        }
+    </div>
+</div>

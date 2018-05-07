@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top: 10%; margin-left: 30%; font-family: Calibri, sans-serif; font-size: 23px; ">
+    @using (Html.BeginForm("SelectAbsentPupils", "Teacher", FormMethod.Post, new { @class = "addForm" }))
+    {
+        <h2 style="font-size: 30px; margin-top: 15px; margin-left: 140px;">Отсутствующие</h2>
+        foreach (ElectronicJournnal.Models.Pupil p in ViewBag.Pupils)
+        {
+            if (ViewBag.AbsentPupils.Contains(p.Pupil_ID))
+            {   
+                <div style="margin-left: 70px;">
+                <p>
+                    <input type="checkbox" class="checkbox" id="checkbox" checked="checked" name="Absent" value=@p.Pupil_ID style="width: 20px; height: 20px;"/>
+                    <label >@p.Surname @p.Name @p.Patronymic</label>
+                </p>
+                </div>
+            }
+            else
+            {
+                <div style="margin-left: 70px;">
+                    <p>
+                        <input type="checkbox" class="checkbox" id="checkbox" name="Absent" value=@p.Pupil_ID style="width: 20px; height: 20px;"/>
+                        <label>@p.Surname @p.Name @p.Patronymic</label>
+                    </p>
+               </div>
+            }
+        }
+
+
+       <button name="lesson" value=@ViewData["Lesson"] class="img" style="margin-left: 200px;"><img src="~/Images/ok.png" height="45" width="45" /></button>
+     }
+</div>

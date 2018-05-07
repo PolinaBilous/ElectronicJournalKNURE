@@ -1,0 +1,23 @@
+﻿@model ElectronicJournnal.Models.TeacherFullInformation
+
+@{   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top: 7%; margin-left: 30%; font-family: Calibri, sans-serif; font-size: 23px;">
+    @using (Html.BeginForm("AddNewTeacher", "Teacher", FormMethod.Post, new { @class = "addForm" }))
+    {
+        <h2 style="font-size: 30px; margin-top: 15px; margin-left: 120px;">Добавление учителя</h2>
+        @Html.HiddenFor(p => p.Teacher_ID)
+        <p>Имя: @Html.TextBoxFor(p => p.Name, new { @class="inp"})</p>
+        <p>Фамилия: @Html.TextBoxFor(p => p.Surname, new { @class = "inp" })</p>
+        <p>Отчество: @Html.TextBoxFor(p => p.Patronymic, new { @class = "inp" })</p>
+        <p>Дата рождения: <input type="date" name="Date_Of_Birth" class="inpDate"></p>
+        <p>Стаж работы: @Html.TextBoxFor(p => p.Experience, new { @class = "inp" })</p>
+        <p>Адресс: @Html.TextBoxFor(p => p.Address, new { @class = "inp" })</p>
+        <p>Номер телефона: @Html.TextBoxFor(p => p.Phone_Number, new { @class = "inp" })</p>
+        <p>Электронная почта: @Html.TextBoxFor(p => p.Email, new { @class = "inp" })</p>
+
+        <button name="action" class="sort" style="margin-left: 175px;">Добавить учителя</button>
+    }
+</div>

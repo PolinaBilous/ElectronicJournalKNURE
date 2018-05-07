@@ -1,0 +1,15 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutParent.cshtml";
+}
+
+<div style="margin-top: 25%; margin-left: 20%;">
+</div>
+
+<div class="actions">
+        @Html.ActionLink("Ученики", "ViewPupils", "Parent", new { @class="elem"})
+        @Html.ActionLink("Классы", "ViewClasses", "Parent", new { @class = "elem" })
+        @Html.ActionLink("Учителя", "ViewTeachers", "Parent", new { @class = "elem" })
+        @Html.ActionLink("Уроки", "ViewLessons", "Parent", new { @class = "elem" }) 
+        @Html.ActionLink("Оценки", "ChooseClass", "Parent", new { @class = "elem" })
+</div>

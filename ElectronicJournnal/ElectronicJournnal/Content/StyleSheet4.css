@@ -1,0 +1,647 @@
+﻿body {
+}
+
+.menu { /* Фиксированное положение */
+    top: 0; /* Левый нижний угол */
+    width: 100%; /* Ширина слоя */
+    position: fixed;
+    background-color: white;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    height: 5%;
+    border-bottom: 1px solid;
+    border-color: #696969;
+}
+
+.menuItem {
+    text-decoration: none;
+    font-family: Calibri, sans-serif;
+    font-size: 20px;
+    color: black;
+    padding-left: 15px;
+    font-weight: 300;
+}
+
+    .menuItem:hover {
+        text-decoration: none;
+        font-family: Calibri, sans-serif;
+        font-size: 20px;
+        color: grey;
+        padding-left: 15px;
+        font-weight: 300;
+    }
+
+.Journal {
+    text-decoration: none;
+    font-family: Calibri, sans-serif;
+    font-size: 25px;
+    color: black;
+    padding-left: 40px;
+    padding-right: 60px;
+    font-weight: 500;
+}
+
+.background {
+    width: 100%;
+    margin-top: 4%;
+    margin-bottom: 15%;
+}
+
+#inf {
+    width: 60%;
+    font-family: Calibri, sans-serif;
+    font-size: 25px;
+    color: black;
+    margin-left: 20%;
+    text-align: center;
+    color: grey;
+    margin-bottom: 21%;
+}
+
+.pointer {
+    position: absolute;
+    margin-top: 38%;
+    margin-left: 43%;
+    font-family: Calibri, sans-serif;
+    font-size: 28px;
+    color: #696969;
+    font-weight: 600;
+    text-decoration: none;
+    opacity: 0.5;
+}
+
+.MyFooter {
+    border-top: 1px solid;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+}
+
+    .MyFooter li {
+        text-decoration: none;
+        font-family: Calibri, sans-serif;
+        font-size: 20px;
+        color: black;
+        padding-left: 300px;
+        font-weight: 300;
+        display: inline;
+    }
+
+.T {
+    position: absolute;
+    margin-top: 20%;
+    margin-left: 31%;
+    font-family: Calibri, sans-serif;
+    font-size: 35px;
+    color: #696969;
+    font-weight: 400;
+    text-decoration: none;
+    border: 1px solid white;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 10px;
+}
+
+    .T:hover {
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+.P {
+    position: absolute;
+    margin-top: 20%;
+    margin-left: 51%;
+    font-family: Calibri, sans-serif;
+    font-size: 35px;
+    color: #696969;
+    font-weight: 400;
+    text-decoration: none;
+    border: 1px solid white;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 10px;
+}
+
+    .P:hover {
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+.title {
+    margin-left: 43%;
+    font-family: Calibri, sans-serif;
+    font-size: 35px;
+    color: #696969;
+    font-weight: 400;
+    text-decoration: none;
+    border: 1px solid white;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+}
+
+.Pas {
+    font-family: Calibri, sans-serif;
+    font-size: 25px;
+    color: #696969;
+    font-weight: 400;
+    padding-bottom: 5%;
+    padding-left: 120px;
+}
+
+.Choise {
+    font-family: Calibri, sans-serif;
+    font-size: 25px;
+    color: #696969;
+    font-weight: 400;
+    padding-bottom: 10%;
+    padding-left: 250px;
+}
+
+.teacher {
+    width: 400px;
+    height: 400px;
+    margin-bottom: 5%;
+    margin-left: 20%;
+}
+
+.parent {
+    margin-bottom: 8%;
+    margin-left: 25%;
+    width: 540px;
+    height: 400px;
+}
+
+#teacher {
+    margin-bottom: 5%;
+}
+
+.ForTeacher td {
+    width: 10000px;
+}
+
+input[type=password] {
+    width: 35%;
+    padding: 8px 4px 8px 10px;
+    border: 1px solid #4e3043;
+    border: 1px solid rgba(78,48,67, 0.8);
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.2), inset 0 1px 1px rgba(0,0,0,0.1);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    font-family: Calibri, sans-serif;
+    font-size: 20px;
+    color: #696969;
+    margin-top: 5%;
+}
+
+.submit {
+    color: #fff;
+    text-decoration: none;
+    user-select: none;
+    background: #5F9EA0;
+    padding: .4em 3em;
+    outline: none;
+    font-family: Calibri, sans-serif;
+    font-size: 18px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+    .submit:hover {
+        background: #008B8B;
+    }
+
+    .submit:active {
+        background: #008080;
+    }
+
+.ITeacher {
+    position: absolute;
+    margin-top: 20%;
+    margin-left: 27%;
+    font-family: Calibri, sans-serif;
+    color: #696969;
+    font-weight: 400;
+    font-size: 35px;
+    text-decoration: none;
+    border: 1px solid white;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 10px;
+    width: 45%;
+    text-align: center;
+}
+
+.bordered {
+    border: solid #ccc 1px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 1px #ccc;
+    -moz-box-shadow: 0 1px 1px #ccc;
+    box-shadow: 0 1px 1px #ccc;
+    font-family: Calibri, sans-serif;
+    font-size: 20px;
+    width: 800px;
+}
+
+    .bordered tr:hover {
+        background: rgba(246, 247, 9, 0.40);
+        -o-transition: all 0.1s ease-in-out;
+        -webkit-transition: all 0.1s ease-in-out;
+        -moz-transition: all 0.1s ease-in-out
+        transition: all 0.1s ease-in-out;
+    }
+
+    .bordered td, .bordered th {
+        border-left: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        padding: 5px;
+        text-align: center;
+    }
+
+    .bordered th {
+        background-color: rgba(80, 208, 125, 0.75);
+        -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+        -moz-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+        box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+        border-top: none;
+        text-shadow: 0 1px 0 rgba(255,255,255,.5);
+        width: auto;
+    }
+
+        .bordered td:first-child, .bordered th:first-child {
+            border-left: none;
+        }
+
+        .bordered th:first-child {
+            -moz-border-radius: 6px 0 0 0;
+            -webkit-border-radius: 6px 0 0 0;
+            border-radius: 6px 0 0 0;
+        }
+
+        .bordered th:last-child {
+            -moz-border-radius: 0 6px 0 0;
+            -webkit-border-radius: 0 6px 0 0;
+            border-radius: 0 6px 0 0;
+        }
+
+        .bordered th:only-child {
+            -moz-border-radius: 6px 6px 0 0;
+            -webkit-border-radius: 6px 6px 0 0;
+            border-radius: 6px 6px 0 0;
+        }
+
+    .bordered tr:last-child td:first-child {
+        -moz-border-radius: 0 0 0 6px;
+        -webkit-border-radius: 0 0 0 6px;
+        border-radius: 0 0 0 6px;
+    }
+
+    .bordered tr:last-child td:last-child {
+        -moz-border-radius: 0 0 6px 0;
+        -webkit-border-radius: 0 0 6px 0;
+        border-radius: 0 0 6px 0;
+    }
+
+.searchText {
+    width: 300px;
+    height: 35px;
+    padding-left: 15px;
+    border-radius: 42px;
+    border: 2px solid #324b4e;
+    background: #ffffff;
+    outline: none;
+    transition: .3s linear;
+    font-family: Calibri, sans-serif;
+    font-size: 15px;
+}
+
+.searchText:focus {
+    width: 350px;
+}
+
+.img {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.searchButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.sort {
+    text-decoration: none;
+    text-align: center;
+    padding: 9px 10px;
+    border: none;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    font-family: Calibri, sans-serif;
+    font-size: 17px;
+    background: #69F1AE;
+    -webkit-box-shadow: 0px 0px 2px #bababa, inset 0px 0px 1px #ffffff;
+    -moz-box-shadow: 0px 0px 2px #bababa, inset 0px 0px 1px #ffffff;
+    box-shadow: 0px 0px 2px #bababa, inset 0px 0px 1px #ffffff;
+}
+
+    .sort:hover {
+        cursor: pointer;
+    }
+
+.elem {
+    font-family: Calibri, sans-serif;
+    font-size: 35px;
+    color: #696969;
+    font-weight: 400;
+    text-decoration: none;
+    border: 1px solid white;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: lightgreen;
+    opacity: 0.9;
+    border-radius: 10px;
+    margin-left: 7%;
+}
+
+    .elem:hover {
+        background-color: aliceblue;
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+.classInf {
+    font-family: Calibri, sans-serif;
+    font-size: 20px;
+}
+
+.header {
+    width: 100%;
+    text-align: center;
+    font-family: Calibri, sans-serif;
+    font-size: 35px;
+    font-weight: 300;
+}
+
+.word {
+    font-family: Calibri, sans-serif;
+    font-size: 20px;
+    display: inline-block;
+}
+
+.dropcontainer {
+    position: relative;
+    font-size: 16px;
+    color: #777;
+    text-decoration: none;
+    display: inline;
+}
+
+.trigger {
+    color: #777;
+    padding: 10px;
+    font-size: 16px;
+    width: 10%;
+    background: #fff url(../images/select-arrow-open.png) 98% center no-repeat;
+    display: block;
+    border: 1px solid #ccc;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+    .trigger:hover {
+        color: #777;
+        background: #f5f5f5 url(../images/select-arrow-open.png) 98% center no-repeat;
+    }
+
+.activetrigger {
+    color: #777;
+    padding: 10px;
+    font-size: 16px;
+    width: 10%;
+    background: #f5f5f5 url(../images/select-arrow-close.png) 98% center no-repeat;
+    display: block;
+    border: 1px solid #ccc;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+    .activetrigger:hover {
+        background: #f5f5f5 url(../images/select-arrow-close.png) 98% center no-repeat;
+        color: #777;
+    }
+
+    .activetrigger:active {
+        background: #f5f5f5 url(../images/select-arrow-close.png) 98% center no-repeat;
+        color: #777;
+    }
+
+.dropcontainer ul {
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background: #fff;
+    list-style-type: none;
+    padding: 10px;
+    margin: 0;
+    width: 10%;
+    z-index: 100;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+    .dropcontainer ul li {
+        padding: 5px;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+    }
+
+        .dropcontainer ul li:hover {
+            background: #f5f5f5;
+            outline: none;
+        }
+
+        .dropcontainer ul li:first-child {
+            display: none;
+        }
+
+        .dropcontainer ul li:last-child {
+            border-bottom: none;
+        }
+
+.dropdownhidden {
+    display: none;
+}
+
+.dropdownvisible {
+    height: auto;
+}
+
+.inp {
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    padding: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 5px;
+    height: 20px;
+    width: 130px;
+    font-size: 20px;
+    color: #555555;
+    font-size: 20px;
+    margin-right: 40px;
+    font-family: Calibri, sans-serif;
+}
+.inpDate {
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    padding: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 5px;
+    height: 25px;
+    width: 150px;
+    font-size: 17px;
+    color: #555555;
+    font-family: Calibri, sans-serif;
+}
+
+.imputSelect {
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    padding: 3px 3px 3px 3px;
+    height: 35px;
+    width: 100px;
+    font-size: 17px;
+    color: #555555;
+    margin-right: 40px;
+    font-family: Calibri, sans-serif;
+}
+
+.inputSelectLong {
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    padding: 3px 3px 3px 3px;
+    height: 35px;
+    width: 330px;
+    font-size: 17px;
+    color: #555555;
+    margin-right: 40px;
+    margin-top: 11px;
+    font-family: Calibri, sans-serif;
+}
+
+.addForm {
+    border: 3px solid #06460e;
+    border-radius: 10px;
+    padding: 20px;
+    width: 46%;
+    background-color: rgba(88, 223, 20, 0.05);
+    font-family: Calibri, sans-serif;
+}
+
+.addClassForm {
+    border: 3px solid #06460e;
+    border-radius: 10px;
+    padding: 20px;
+    width: 45%;
+    background-color: rgba(88, 223, 20, 0.05);
+    font-family: Calibri, sans-serif;
+}
+
+.inpLong {
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    padding: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 5px;
+    height: 20px;
+    width: 250px;
+    font-size: 20px;
+    color: #555555;
+    font-size: 20px;
+    margin-right: 40px;
+    font-family: Calibri, sans-serif;
+}
+
+.itemSt {
+    font-family: Calibri, sans-serif;
+    font-size: 35px;
+    color: #696969;
+    font-weight: 400;
+    text-decoration: none;
+    border: 1px solid white;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: lightgreen;
+    opacity: 0.9;
+    border-radius: 10px;
+    margin-left: 15%;
+    margin-top: 300px;
+}
+
+.itemSt:hover{
+    transform: scale(2);
+    background-color: aliceblue;
+}
+
+.numberInp {
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    padding: 3px 3px 3px 3px;
+    height: 18px;
+    width: 55px;
+    font-size: 17px;
+    color: #555555;
+    font-family: Calibri, sans-serif;
+    outline: none;
+}
+
+.imputSelectMin {
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    padding: 3px 3px 3px 3px;
+    height: 28px;
+    width: 70px;
+    font-size: 17px;
+    color: #555555;
+    margin-right: 40px;
+    font-family: Calibri, sans-serif;
+}

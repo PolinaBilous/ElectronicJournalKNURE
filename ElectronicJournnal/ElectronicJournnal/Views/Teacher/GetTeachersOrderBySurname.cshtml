@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ElectronicJournnal.Models.TeacherShortInf>
+
+<div id="information" style="float:left; padding-left: 350px; padding-top: 50px;">
+    <div style="display: inline-block; padding-left: 750px;">
+        <a href="/Teacher/AddTeacherForm">
+            <img src="~/Images/add.png" alt="Добавить учителя" />
+        </a>
+    </div>
+    <table class="bordered">
+        <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Стаж работы</th>
+                <th colspan="3">Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (ElectronicJournnal.Models.TeacherShortInf item in Model)
+                {
+                    <tr>
+                        <td>@item.Surname @item.Name @item.Patronymic</td>
+                        <td>@item.Experience лет</td>
+                        <td>
+                            @using (Html.BeginForm("ViewTeachers", "Teacher", FormMethod.Post))
+                            {
+                                <button name="action" class="img" value="@item.Teacher_ID" style="display: inline-block;"><img src="~/Images/info.png" width="30" height="30" /></button>
+                            }
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("ViewTeachers", "Teacher", FormMethod.Post))
+                            {
+                                <button name="delete" class="img" value="@item.Teacher_ID" style="display: inline-block;"><img src="~/Images/delete.png" width="30" height="30" /></button>
+
+                            }
+                        </td>
+                    </tr>
+                }
+        </tbody>
+    </table>
+</div>
+

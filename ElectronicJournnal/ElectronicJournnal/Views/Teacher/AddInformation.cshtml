@@ -1,0 +1,12 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("AddInformation", "Teacher", FormMethod.Post))
+{
+    <button name="addPupil" value="1">Добавить ученика</button>
+    <button name="addTeacher" value="1">Добавить учителя</button>
+    <button name="addClass" value="1">Добавить класс</button>
+    <button name="addLesson" value="1">Добавить урок</button>
+}

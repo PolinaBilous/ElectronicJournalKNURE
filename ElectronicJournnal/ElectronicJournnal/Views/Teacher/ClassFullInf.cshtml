@@ -1,0 +1,40 @@
+﻿@model ElectronicJournnal.Models.ClassWithManagment
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top: 10%; margin-left: 30%;" class="classInf">
+    @using (Html.BeginForm("ClassFullInf", "Teacher", FormMethod.Post))
+    {
+        @Html.Hidden("ClassID", Model.Class_ID)
+        <p><b>Название класса:</b> @Model.Class_Name</p>
+        <p><b>Классный руководитель:</b> @Model.Surname @Model.Name @Model.Patronymic</p>
+        <p><b>Дата формирования:</b> @Model.Formation_Date.ToLongDateString()</p>
+        <p><b>Список учеников:</b> </p>
+
+        <table class="bordered" style="width: 500px;">
+            <thead>
+                <tr>
+                    <th>ФИО</th>
+                    <th colspan="2">Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ElectronicJournnal.Models.Pupil item in ViewBag.Pupils)
+                {
+                    <tr>
+                        <td>@item.Surname @item.Name @item.Patronymic</td>
+                        <td><button name="action" value="@item.Pupil_ID" class="img" style="display: inline-block;"><img src="~/Images/info.png" width="30" height="30" /></button></td>
+                        <td><button name="delete" value="@item.Pupil_ID" class="img" style="display: inline-block;"><img src="~/Images/delete.png" width="30" height="30" /></button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @using (Html.BeginForm("EditClassInformation", "Teacher", FormMethod.Post))
+    {
+        <button name="action" class="img" value="@Model.Class_ID" style="margin-top: 3%; margin-left: 20%;"><img src="~/Images/edit.png"/></button>
+    }
+</div>

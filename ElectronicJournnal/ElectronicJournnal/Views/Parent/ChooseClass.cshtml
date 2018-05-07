@@ -1,0 +1,18 @@
+﻿@model IEnumerable<ElectronicJournnal.Models.Class>
+
+@{
+    Layout = "~/Views/Shared/_LayoutParent.cshtml";
+}
+
+<div style="margin-top: 21%; margin-left: 13%;">
+
+    @using (Html.BeginForm("ViewMarks", "Parent", FormMethod.Post))
+    {
+        foreach (ElectronicJournnal.Models.Class item in Model)
+        {
+            <div style="display: inline-block; margin-left: 50px;">
+                <button name="id" value="@item.Class_ID" class="elem" style="width: 150px;">@item.Class_Name</button>
+            </div>
+        }
+    }
+</div>

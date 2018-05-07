@@ -1,0 +1,43 @@
+﻿@model ElectronicJournnal.Models.Lesson
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top: 10%; margin-left: 30%; font-family: Calibri, sans-serif; font-size: 23px;">
+    @using (Html.BeginForm("AddLessonForm", "Teacher", FormMethod.Post, new { @class = "addForm" }))
+    {
+        <h2 style="font-size: 30px; margin-top: 15px; margin-left: 120px;">Добавление урока</h2>
+        @Html.HiddenFor(l => l.Lesson_ID)
+        <p>
+            Класс:
+            <select name="Class_ID" class="imputSelect">
+                @foreach (ElectronicJournnal.Models.Class item in ViewBag.Classes)
+                {
+                    <option value="@item.Class_ID">@item.Class_Name</option>
+                }
+            </select>
+        </p>
+        <p>
+            Учитель:
+            <select name="Teacher_ID" class="inputSelectLong">
+                @foreach (ElectronicJournnal.Models.TeacherShortInf item in ViewBag.Teachers)
+                {
+                    <option value="@item.Teacher_ID">@item.Surname @item.Name @item.Patronymic</option>
+                }
+            </select>
+        </p>
+        <p>
+            Предмет:
+            <select name="Subject_ID" class="imputSelect" style="width: 250px;">
+                @foreach (ElectronicJournnal.Models.Subject item in ViewBag.Subjects)
+                {
+                    <option value="@item.Subject_ID">@item.Subject_Name</option>
+                }
+            </select>
+        </p>
+        <p>Дата урока: <input type="date" name="Date" class="inpDate"/></p>
+
+        <button name="action" class="sort" style="margin-left: 175px;">Добавить урок</button>
+    }
+</div>

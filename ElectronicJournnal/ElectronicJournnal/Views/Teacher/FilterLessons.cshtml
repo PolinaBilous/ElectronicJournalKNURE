@@ -1,0 +1,42 @@
+﻿<div id="information" style="float:left; padding-left: 330px; padding-top: 50px;">
+    <div style="padding-left: 750px;">
+        <a href="/Teacher/AddLessonForm">
+            <img src="~/Images/add.png" alt="Добавить урок" />
+        </a>
+    </div>
+    @using (Html.BeginForm("ViewLessons", "Teacher", FormMethod.Post))
+    {
+        <table class="bordered">
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Уроки</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.Dates.Count; i++)
+                {
+                    <tr>
+                        <td style="padding-right: 20px;">
+                            @ViewBag.Dates[i].ToLongDateString()
+                        </td>
+                        <td>
+                            @foreach (ElectronicJournnal.Models.LessonFullInf lesson in ViewBag.Lessons[i])
+                            {
+                                <p>
+                                    @lesson.Class_Name @lesson.Subject_Name
+                                    @lesson.Teacher_Surname @lesson.Teacher_Name[0].@lesson.Teacher_Patronymic[0].
+                                    <button name="action" value="@lesson.Lesson_ID" class="img" style="display: inline-block;"><img src="~/Images/edit.png" width="30" height="30" /></button>
+                                    <button name="delete" value="@lesson.Lesson_ID" class="img" style="display: inline-block;"><img src="~/Images/delete.png" width="30" height="30" /></button>
+                                    <button name="addMark" value="@lesson.Lesson_ID" class="img" style="display: inline-block;"><img src="~/Images/addmark.png" width="30" height="30" /></button>
+                                    <button name="absent" value="@lesson.Lesson_ID" class="img" style="display: inline-block;"><img src="~/Images/absent.png" width="30" height="30" /></button>
+                                </p>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+

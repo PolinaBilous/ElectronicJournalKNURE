@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="@Url.Content("~/Content/StyleSheet7.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="menu">
+        @Html.ActionLink("Electronic journal", "Index", "Home", new { }, new { @class = "Journal" })
+    </div>
+    @RenderBody()
+    <div class="MyFooter">
+            <ul class="foot">
+                <li> Produced by Polina Bilous </li>
+                <li> Email: polina.bilous@nure.ua </li>
+            </ul>
+        </div>
+</body>
+</html>
+
+<script type="text/javascript">
+ $(document).ready(function(){
+    $("#menu").on("click","a", function (event) {
+        event.preventDefault();
+        var id  = $(this).attr('href'),
+            top = $(id).offset().top - 280;
+        $('body,html').animate({scrollTop: top}, 700);
+    });
+});
+</script>
+
+<script type="text/javascript">
+ $(document).ready(function(){
+    $("#teach").on("click","a", function (event) {
+        event.preventDefault();
+        var id  = $(this).attr('href'),
+            top = $(id).offset().top - 120;
+        $('body,html').animate({scrollTop: top}, 900);
+    });
+});
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#par").on("click", "a", function (event) {
+            event.preventDefault();
+            var id = $(this).attr('href'),
+                top = $(id).offset().top;
+            $('body,html').animate({ scrollTop: top }, 900);
+        });
+    });
+</script>

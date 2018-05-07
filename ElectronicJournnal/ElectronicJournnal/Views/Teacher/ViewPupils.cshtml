@@ -1,0 +1,147 @@
+﻿@model IEnumerable<ElectronicJournnal.Models.PupilWithClass>
+@{
+    ViewBag.Title = "ViewPupils";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+</head>
+<body>
+    <div style="margin-top: 10%;">
+        <div>
+            <div style="display: inline-block; padding-left: 30px;">
+                <button id="orderBySurname" class="sort">Сортировать по алфавиту</button>
+                <button id="orderByClass" class="sort">Сортировать по классу</button>
+            </div>
+
+            <div style="display: inline-block; padding-left: 600px;">
+                    <input id="searchText" name="Person" placeholder="Поиск по ФИО, ФИ..." type="text" class="searchText"/>
+                    <button id="search" class="searchButton"><img src="~/Images/search.png" width="30" height="30"/></button>
+            </div>
+            <div style="display:inline-block;">
+                @using (Html.BeginForm("ToAllPupils", "Teacher", FormMethod.Post))
+                {
+                    <button class="img"><img src="~/Images/toAll.png" width="30" height="30"/></button>
+                }
+            </div>
+        </div>
+        <div>
+            <div style="float: right; margin-right: 100px; margin-top: 100px; font-family: Calibri, 
+                        sans-serif; font-size: 23px; border: 2px solid #154504; padding: 15px; border-radius: 20px; background-color: rgba(71, 182, 36, 0.1)" >
+                <p style="margin-left: 30px;"><b>Фильтрация</b></p>
+                 <p style="margin-left: 21px;">Средний балл:</p>
+                     от <input type="number" min="1" max="12" name="from" id="from" class="numberInp">
+                     до <input type="number" min="1" max="12" name="to" id="to" class="numberInp">
+                 <p style="margin-left: 60px;">Класс:</p>
+                 <p><select name="Class_ID" id="class" class="imputSelectMin" style="margin-left: 55px;">
+                     <option value=0></option>
+                     @foreach (ElectronicJournnal.Models.Class item in ViewBag.Classes)
+                     {
+                         <option value="@item.Class_ID">@item.Class_Name</option>
+                     }
+                 </select></p>
+                <div style="display: inline-block;"><button id="filter" class="img" style="margin-left: 30px;"><img src="~/Images/filter.png" width="50" height="50" /></button></div>
+                <div style="display: inline-block;">
+                    @using (Html.BeginForm("ToAllPupils", "Teacher", FormMethod.Post))
+                    {
+                        <button style="display: inline-block;" class="img"><img src="~/Images/nofilter.png" width="50" height="50" /></button>
+                    }
+                </div>
+            </div>
+
+            <div id="information" style="float:left; padding-left: 300px; padding-top: 20px;">
+                <div style="padding-left: 750px;">
+                    <a href="/Teacher/AddPupilForm">
+                        <img src="~/Images/add.png" alt="Добавить ученика" />
+                    </a>
+                </div>
+                <table class="bordered">
+                    <thead>
+                        <tr>
+                            <th>ФИО</th>
+                            <th>Класс</th>
+                            <th colspan="3">Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @using (Html.BeginForm("ViewPupils", "Teacher", FormMethod.Post))
+                        {
+                            foreach (ElectronicJournnal.Models.PupilWithClass item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Surname @item.Name @item.Patronymic </td>
+                                    <td>@item.Class</td>
+                                    <td><button name="action" value="@item.Pupil_ID" class="img" style="display: inline-block;"><img src="~/Images/info.png" width="30" height="30"/></button></td>
+                                    <td><button name="marks" value="@item.Pupil_ID" class="img" style="display: inline-block;"><img src="~/Images/marks.png" width="30" height="30"/></button></td>
+                                    <td><button name="delete" value="@item.Pupil_ID" class="img" style="display: inline-block;"><img src="~/Images/delete.png" width="30" height="30"/></button></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function () {
+        $('#orderBySurname').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("GetPupilsOrderBySurname")',
+                success: function (data) {
+                    $('#information').replaceWith(data);
+                }
+            });
+        });
+    })
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#orderByClass').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("GetPupilsOrderByClass")',
+                success: function (data) {
+                    $('#information').replaceWith(data);
+                }
+            });
+        });
+    })
+</script>
+
+<script type="text/javascript">
+    $('#search').click(function () {
+        var text = $("#searchText").val();
+        document.getElementById('searchText').value = "";
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("SearchPupilsBySurname")?Person=' + text,
+                success: function (data) {
+                    $('#information').replaceWith(data);
+                }
+            });
+        });
+</script>
+
+<script type="text/javascript">
+    $('#filter').click(function () {
+        var classID = $("#class").val();
+        var from = $("#from").val();
+        var to = $("#to").val();
+        $.ajax({
+            type: 'GET',
+                url: '@Url.Action("FilterPupils")?Class_ID=' + classID + '&from=' + from + '&to=' + to,
+                success: function (data) {
+                    $('#information').replaceWith(data);
+                }
+            });
+        });
+</script>

@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="@Url.Content("~/Content/StyleSheet7.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="menu">
+        @Html.ActionLink("Electronic journal", "Index", "Home", new { }, new { @class = "Journal" })
+        @Html.ActionLink("Просмотр информацией", "ManageInformation", "Parent", new { }, new { @class = "menuItem" })
+        @Html.ActionLink("Статистика", "GetStatistics", "Parent", new { }, new { @class = "menuItem" })
+        @Html.ActionLink("Подписка", "Subscription", "Parent", new { }, new { @class = "menuItem" })
+    </div>
+    @RenderBody()
+    @*<div class="MyFooter">
+            <ul class="foot">
+                <li> Produced by Polina Bilous </li>
+                <li> Email: polina.bilous@nure.ua </li>
+            </ul>
+        </div>*@
+</body>
+</html>

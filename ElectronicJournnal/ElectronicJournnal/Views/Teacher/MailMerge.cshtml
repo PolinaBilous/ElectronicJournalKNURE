@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top: 8%; margin-left: 15%; width: 70%;">
+
+    <h3 class="header">Для того, что бы разослать сообщения ВСЕМ родителям необходимо просто нажать на кнопку.</h3>
+    @using (Html.BeginForm("MailMerge", "Teacher", FormMethod.Post))
+    {
+        <button name="send" value="send" class="sort" style="font-size: 35px; margin-left: 43%; margin-top: 30px;">Разослать</button>
+
+        <h3 class="header">Для того, что бы разослать сообщения родителям учеников определенных класса выберите класс и нажмите на кнопку разослать.</h3>
+
+        <div style="width: 50%; margin-left: 23%;">
+            @foreach (ElectronicJournnal.Models.Class p in ViewBag.Classes)
+            {
+                <span style="margin-left: 5%; font-family: Calibri, sans-serif; font-size: 30px">
+                    <label><input type="checkbox" name="Mail" value=@p.Class_ID style="width: 20px; height:20px;"></label>@p.Class_Name
+                </span>
+            }
+
+            <button name="send" value="send" type="submit" class="sort" style="font-size: 35px; margin-left: 43%; margin-top: 30px;">Разослать</button>
+        </div>
+    }
+
+</div>

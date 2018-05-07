@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ElectronicJournnal.Models.PupilWithAvgMark>
+
+<div id="information" style="margin-left: 2%;">
+    <div>
+        <h3 class="header">Статистика: </h3>
+
+        <table class="bordered" style="width: 600px; margin-left: 30%;">
+            <thead>
+                <tr>
+                    <th>Ученик</th>
+                    <th>Средний балл</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ElectronicJournnal.Models.PupilWithAvgMark p in Model)
+                {
+                    <tr>
+                        <td>@p.Surname @p.Name @p.Patronymic </td>
+                        <td>@p.AvgMark.ToString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        @using (Html.BeginForm("GetRating", "Teacher", FormMethod.Post))
+        {
+            @Html.Hidden("classID", ViewData["ClassID"])
+            <button name="action" class="sort" style="margin-left: 45%; margin-top: 2%; background-color: lightgreen;" value=1>Получить отчет</button>
+        }
+
+    </div>
+</div>
+
+
+

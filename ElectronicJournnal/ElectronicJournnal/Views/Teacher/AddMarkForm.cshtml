@@ -1,0 +1,44 @@
+﻿@model ElectronicJournnal.Models.Mark
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top: 10%; margin-left: 30%; font-family: Calibri, sans-serif; font-size: 23px;">
+    @using (Html.BeginForm("AddNewMark", "Teacher", FormMethod.Post, new { @class = "addForm" }))
+    {
+        <h2 style="font-size: 30px; margin-top: 15px; margin-left: 120px;">Добавление оценки</h2>
+        @Html.HiddenFor(m => m.Mark_ID)
+        <p>
+            Ученик:
+            <select name="Pupil_ID" class="inputSelectLong">
+                @foreach (ElectronicJournnal.Models.Pupil item in ViewBag.Pupils)
+                {
+                    <option value="@item.Pupil_ID">@item.Surname @item.Name @item.Patronymic</option>
+                }
+            </select>
+        </p>
+
+        <p>
+            Тип работы:
+            <select name="TypeOfWork_ID" class="imputSelect" style="width: 250px;"> 
+                @foreach (ElectronicJournnal.Models.TypeOfWork item in ViewBag.Types)
+                {
+                    <option value="@item.TypeOfWork_ID">@item.TypeOfWork_Name</option>
+                }
+            </select>
+        </p>
+
+        <p>
+            Оценка:
+            <select name="PupilMark" class="imputSelect" style="width: 100px;">
+                @for (int i = 1; i < 13; i++)
+                {
+                    <option value=@i>@i</option>
+                }
+            </select>
+        </p>
+
+        <button name="res" value=@ViewData["LessonID"] class="sort" style="margin-left: 175px;">Добавить оценку</button>
+    }
+</div>

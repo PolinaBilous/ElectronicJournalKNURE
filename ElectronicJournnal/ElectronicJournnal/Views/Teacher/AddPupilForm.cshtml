@@ -1,0 +1,23 @@
+﻿@model ElectronicJournnal.Models.PupilFullInformation
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top: 7%; margin-left: 30%; font-family: Calibri, sans-serif; font-size: 23px; ">
+    @using (Html.BeginForm("AddNewPupil", "Teacher", FormMethod.Post, new { @class = "addForm" }))
+    {
+        <h2 style="font-size: 30px; margin-top: 15px; margin-left: 120px;">Добавление ученика</h2>
+        @Html.HiddenFor(p => p.Pupil_ID)
+        <p>Имя: @Html.TextBoxFor(p => p.Name, new { @class = "inp"})</p>
+        <p>Фамилия: @Html.TextBoxFor(p => p.Surname, new { @class = "inp" })</p>
+        <p>Отчество: @Html.TextBoxFor(p => p.Patronymic, new { @class = "inp" })</p>
+        <p>Класс: @Html.DropDownListFor(p => p.Class, ViewBag.Classes as SelectList, new { @class = "imputSelect" })</p>
+        <p>Дата рождения: <input type="date" name="Date_Of_Birth" class="inpDate"></p>
+        <p>Телефон одного из родителей: @Html.TextBoxFor(p => p.Parent_Phone_Number, new { @class = "inp" })</p>
+        <p>Телефон ученика: @Html.TextBoxFor(p => p.Pupil_Phone_Number, new { @class = "inp" })</p>
+        <p>Адресс: @Html.TextBoxFor(p => p.Address, new { @class = "inp" })</p>
+
+        <button name="action" class="sort" style="margin-left: 177px;">Добавить ученика</button>
+    }
+</div>

@@ -1,0 +1,35 @@
+﻿@model ElectronicJournnal.Models.ClassWithManagment
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top: 11%; margin-left: 33%; font-family: Calibri, sans-serif; font-size: 23px; ">
+    @using (Html.BeginForm("SaveClassInformation", "Teacher", FormMethod.Post, new { @class = "addForm" }))
+    {
+        <h2 style="font-size: 30px; margin-top: 15px; margin-left: 43px;">Редактирование информации</h2>
+        @Html.HiddenFor(c => c.Class_ID, Model.Class_ID)
+        @Html.HiddenFor(c => c.ClassManagment_ID, Model.ClassManagment_ID)
+        <p>Название класса: @Html.TextBoxFor(c => c.Class_Name, Model.Class_Name, new { @class = "inp" })</p>
+        <p>Дата формирования: <input type="date" name="Formation_Date" value=@Model.Formation_Date.ToString("yyyy-MM-dd") class="inpDate"/></p>
+        <p>
+            Классный руководитель:
+            <select name="Teacher_ID" class="inputSelectLong">
+                @foreach (ElectronicJournnal.Models.TeacherShortInf item in ViewBag.Teachers)
+                {
+                    if (item.Teacher_ID == Model.Teacher_ID)
+                    {
+                        <option selected value="@item.Teacher_ID">@item.Surname @item.Name @item.Patronymic</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Teacher_ID">@item.Surname @item.Name @item.Patronymic</option>
+                    }
+                }
+            </select>
+        </p>
+
+        <button name="action" value="@Model.Class_ID" class="img" style="margin-left: 175px;"><img src="~/Images/save.png" width="60" height="60" /></button>
+        <button name="cancel" value="cancel" class="img"><img src="~/Images/exit.png" width="65" height="65" /></button>
+    }
+</div>

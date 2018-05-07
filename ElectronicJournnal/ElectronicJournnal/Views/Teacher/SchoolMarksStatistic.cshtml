@@ -1,0 +1,93 @@
+﻿@*<div style="margin-left: 20%; margin-top: 10%;">
+    <h3>Статистика об успеваемости школы</h3>
+
+    <p> Количество учеников средний бал которых от 0 до 4: @ViewBag.Statistic[0].Value</p>
+    <p> Количество учеников средний бал которых от 4 до 7: @ViewBag.Statistic[1].Value</p>
+    <p> Количество учеников средний бал которых от 7 до 9: @ViewBag.Statistic[2].Value</p>
+    <p> Количество учеников средний бал которых от 9 до 12: @ViewBag.Statistic[3].Value</p>
+</div>*@
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div style="margin-top: 7%; align-items: center; width: 100%;">
+
+    <h3 class="header">Успеваемость школы </h3>
+
+    <h3 class="header">Статистика: </h3>
+
+    <table class="bordered" style="width: 600px; margin-left: 30%;">
+        <thead>
+            <tr>
+                <th>Диапазон среднего балла</th>
+                <th>Количество учеников</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Oт 0 до 4</td>
+                <td>@ViewBag.Statistic[0].Value</td>
+            </tr>
+            <tr>
+                <td>Oт 4 до 7</td>
+                <td>@ViewBag.Statistic[1].Value</td>
+            </tr>
+            <tr>
+                <td>Oт 7 до 9</td>
+                <td>@ViewBag.Statistic[2].Value</td>
+            </tr>
+            <tr>
+                <td>Oт 9 до 12</td>
+                <td>@ViewBag.Statistic[3].Value</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 class="header">Диаграмма:</h3>
+</div>
+
+<div id="chart_div" style="align-content: center; width: 100%; margin-left: 25%;"></div>
+
+
+<script type="text/javascript" src="https://www.google.com/jsapi">
+</script>
+
+<script type="text/javascript">
+      // Подгружаем API
+      google.load('visualization', '1.0', { 'packages': ['corechart'] });
+
+      // Устанавливаем callback
+      google.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+          var options = {
+              'title': 'Успеваемость в школе',
+              'width': 900,
+              'height': 500,
+              'is3D': true
+          };
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Lesson');
+          data.addColumn('number', 'Slices');
+
+          $.getJSON('@Url.Action("GetSchoolMarksStatistic", "Teacher")', null,
+                                                   function (result) {
+                                                       if (result.Results.length) {
+                                                           $.each(result.Results, function (index, c) {
+                      data.addRow(
+                          [c.Key, c.Value]
+                      );
+                  });
+                  // Отрисовка диаграммы
+                  var chart = new google.visualization.PieChart(
+                                   document.getElementById('chart_div'));
+                  chart.draw(data, options);
+              };
+          });
+      }
+</script>

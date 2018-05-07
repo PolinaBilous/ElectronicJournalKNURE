@@ -1,0 +1,33 @@
+﻿<div id="information" style="float:left; padding-left: 330px; padding-top: 50px;">
+    @using (Html.BeginForm("ViewLessons", "Teacher", FormMethod.Post))
+    {
+        <table class="bordered">
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Уроки</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.Dates.Count; i++)
+                {
+                    <tr>
+                        <td style="padding-right: 20px;">
+                            @ViewBag.Dates[i].ToLongDateString()
+                        </td>
+                        <td>
+                            @foreach (ElectronicJournnal.Models.LessonFullInf lesson in ViewBag.Lessons[i])
+                            {
+                                <p>
+                                    @lesson.Class_Name @lesson.Subject_Name
+                                    @lesson.Teacher_Surname @lesson.Teacher_Name[0].@lesson.Teacher_Patronymic[0].
+                                </p>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+

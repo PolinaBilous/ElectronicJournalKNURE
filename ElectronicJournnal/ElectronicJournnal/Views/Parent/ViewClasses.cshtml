@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ElectronicJournnal.Models.Class>
+
+@{
+    Layout = "~/Views/Shared/_LayoutParent.cshtml";
+}
+
+<div style="margin-top: 15%; margin-left: 40%;">
+    <table class="bordered" style="width: 300px;">
+        <thead>
+            <tr>
+                <th>Класс</th>
+                <th colspan="2">Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @using (Html.BeginForm("ViewClasses", "Parent", FormMethod.Post))
+            {
+                foreach (ElectronicJournnal.Models.Class item in Model)
+                {
+                    <tr>
+                        <td>@item.Class_Name</td>
+                        <td><button name="action" class="img" value="@item.Class_ID" style="display: inline-block;"><img src="~/Images/info.png" width="30" height="30" /></button></td>
+                   </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ElectronicJournnal.Models.ClassesFillability>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-top: 7%; align-items: center; width: 100%;">
+
+    <h3 class="header">Наполняемость классов в школе </h3>
+
+    <h3 class="header">Статистика: </h3>
+
+    <table class="bordered" style="width: 600px; margin-left: 30%;">
+        <thead>
+            <tr>
+                <th>Класс</th>
+                <th>Количество учеников</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ElectronicJournnal.Models.ClassesFillability c in Model)
+            {
+                <tr>
+                    <td>@c.ClassName </td>
+                    <td>@c.CountOfPupils.ToString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3 class="header">Диаграмма:</h3>
+</div>
+
+<div id="chart_div" style="align-content: center; width: 100%; margin-left: 25%;"></div>
+
+
+<script type="text/javascript" src="https://www.google.com/jsapi">
+</script>
+
+<script type="text/javascript">
+      // Подгружаем API
+      google.load('visualization', '1.0', { 'packages': ['corechart'] });
+
+      // Устанавливаем callback
+      google.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+          var options = {
+              'title': 'Пропуск предметов',
+              'width': 900,
+              'height': 500,
+              'is3D': true
+          };
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Lesson');
+          data.addColumn('number', 'Slices');
+
+          $.getJSON('@Url.Action("ClassesFillability", "Teacher")', null,
+                                                   function (result) {
+                                                       if (result.Results.length) {
+                                                           $.each(result.Results, function (index, c) {
+                      data.addRow(
+                          [c.ClassName, c.CountOfPupils]
+                      );
+                  });
+                  // Отрисовка диаграммы
+                  var chart = new google.visualization.PieChart(
+                                   document.getElementById('chart_div'));
+                  chart.draw(data, options);
+              };
+          });
+      }
+</script>
+
